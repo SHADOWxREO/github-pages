@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KBC Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .question-box { margin: 20px auto; padding: 20px; border: 2px solid #333; max-width: 500px; }
+        .options { display: flex; flex-direction: column; }
+        .option { margin: 5px; padding: 10px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .option:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Kaun Banega Crorepati</h1>
+    <div class="question-box">
+        <h2 id="question">Loading...</h2>
+        <div class="options">
+            <button class="option" onclick="checkAnswer(0)"></button>
+            <button class="option" onclick="checkAnswer(1)"></button>
+            <button class="option" onclick="checkAnswer(2)"></button>
+            <button class="option" onclick="checkAnswer(3)"></button>
+        </div>
+    </div>
+    <h3 id="score">Score: 0</h3>
+
+    <script>
+        const questions = [
+            { question: "What is the capital of India?", options: ["Delhi", "Mumbai", "Kolkata", "Chennai"], answer: 0 },
+            { question: "Who wrote 'Hamlet'?", options: ["Shakespeare", "Dickens", "Hemingway", "Tolkien"], answer: 0 },
+            { question: "What is 5 + 3?", options: ["5", "8", "12", "7"], answer: 1 }
+        ];
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            if (currentQuestion < questions.length) {
+                document.getElementById("question").textContent = questions[currentQuestion].question;
+                const buttons = document.querySelectorAll(".option");
+                buttons.forEach((button, index) => {
+                    button.textContent = questions[currentQuestion].options[index];
+                });
+            } else {
+                document.querySelector(".question-box").innerHTML = `<h2>Game Over!</h2><p>Your final score is: ${score}</p>`;
+            }
+        }
+
+        function checkAnswer(selected) {
+            if (selected === questions[currentQuestion].answer) {
+                score += 10;
+                document.getElementById("score").textContent = "Score: " + score;
+            }
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
