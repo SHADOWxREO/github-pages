@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+.question-box {
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #333;
+    max-width: 500px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+}
+
+.option {
+    margin: 5px;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: #0056b3;
+}
